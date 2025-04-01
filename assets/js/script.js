@@ -15,7 +15,30 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-function runGame() {}
+/**
+ * The main game "loop", called when the script is first loaded
+ * and after the user's answer has been processed.
+ */
+function runGame() {
+    // Generate two random numbers between 1 and 25
+    const op1 = Math.floor(Math.random() * 25) + 1;
+    const op2 = Math.floor(Math.random() * 25) + 1;
+    const operator = Math.floor(Math.random() * 3);
+    // 0 = addition, 1 = subtraction, 2 = multiplication
+    switch (operator) {
+        case 0:
+            displayAdditionQuestion(op1, op2);
+            break;
+        case 1:
+            displaySubtractQuestion(op1, op2);
+            break;
+        case 2:
+            displayMultiplyQuestion(op1, op2);
+            break;
+        default:
+            alert("Invalid operator");
+    }
+}
 
 function checkAnswer() {}
 

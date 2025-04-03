@@ -6,7 +6,8 @@ document.addEventListener("DOMContentLoaded", function () {
     for (let button of buttons) {
         button.addEventListener("click", function (e) {
             if (this.getAttribute("data-type") === "submit") {
-                alert("You clicked the submit button!");
+                //alert("You clicked the submit button!");
+                checkAnswer();
             } else {
                 let gameType = this.getAttribute("data-type");
                 // alert(`You clicked a button of type: ${gameType}`);
@@ -45,7 +46,25 @@ function runGame(gameType) {
     }
 }
 
-function checkAnswer() {}
+/**
+ * Checks the answer against the first element in
+ * the returned calculateCorrectAnswer array
+ */
+function checkAnswer() {
+    let userAnswer = parseInt(document.getElementById("answer-box").value);
+    let calculatedAnswer = calculateCorrectAnswer();
+    let isCorrect = userAnswer === calculatedAnswer[0];
+
+    if (isCorrect) {
+        alert("Hey! You got it right! :D");
+    } else {
+        alert(
+            `Awwww....you answered ${userAnswer}. The correct answer was ${calculatedAnswer[0]}!`
+        );
+    }
+
+    runGame(calculatedAnswer[1]);
+}
 
 /**
  * Gets the operands and the operator from the DOM
@@ -58,15 +77,17 @@ function calculateCorrectAnswer() {
 
     if (operator === "+") {
         return [operand1 + operand2, "addition"];
-    } else if (operator === "-") {
-        return [operand1 - operand2, "subtract"];
-    } else if (operator === "*") {
-        return [operand1 * operand2, "multiply"];
-    } else if (operator === "/") {
-        return [operand1 / operand2, "division"];
-    } else {
-        alert(`Unrecognized operator: ${operator}`);
-        throw `Unrecognized operator: ${operator}`;
+    }
+    // else if (operator === "-") {
+    //     return [operand1 - operand2, "subtract"];
+    // } else if (operator === "*") {
+    //     return [operand1 * operand2, "multiply"];
+    // } else if (operator === "/") {
+    //     return [operand1 / operand2, "division"];
+    // }
+    else {
+        alert(`Unimplemented operator: ${operator}`);
+        throw `Unimplemented operator: ${operator}. Aborting!`;
     }
 }
 

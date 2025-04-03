@@ -34,9 +34,9 @@ function runGame(gameType) {
         // case "subtract":
         //     displaySubtractQuestion(op1, op2);
         //     break;
-        // case "multiply":
-        //     displayMultiplyQuestion(op1, op2);
-        //     break;
+        case "multiply":
+            displayMultiplyQuestion(op1, op2);
+            break;
         // case "division":
         //     displayDivisionQuestion(op1, op2);
         //     break;
@@ -82,9 +82,11 @@ function calculateCorrectAnswer() {
     }
     // else if (operator === "-") {
     //     return [operand1 - operand2, "subtract"];
-    // } else if (operator === "*") {
-    //     return [operand1 * operand2, "multiply"];
-    // } else if (operator === "/") {
+    // }
+    else if (operator === "x") {
+        return [operand1 * operand2, "multiply"];
+    }
+    // else if (operator === "/") {
     //     return [operand1 / operand2, "division"];
     // }
     else {
@@ -120,4 +122,8 @@ function displayAdditionQuestion(operand1, operand2) {
 
 function displaySubtractQuestion() {}
 
-function displayMultiplyQuestion() {}
+function displayMultiplyQuestion(operand1, operand2) {
+    document.getElementById("operand1").textContent = operand1;
+    document.getElementById("operand2").textContent = operand2;
+    document.getElementById("operator").textContent = "x";
+}

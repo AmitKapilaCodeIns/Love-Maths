@@ -57,10 +57,12 @@ function checkAnswer() {
 
     if (isCorrect) {
         alert("Hey! You got it right! :D");
+        incrementScore();
     } else {
         alert(
             `Awwww....you answered ${userAnswer}. The correct answer was ${calculatedAnswer[0]}!`
         );
+        incrementWrongAnswer();
     }
 
     runGame(calculatedAnswer[1]);
@@ -91,9 +93,23 @@ function calculateCorrectAnswer() {
     }
 }
 
-function incrementScore() {}
+/**
+ * Gets the current score from the DOM and increments it by 1
+ */
+function incrementScore() {
+    let oldScore = parseInt(document.getElementById("score").innerText);
+    document.getElementById("score").innerText = ++oldScore;
+}
 
-function incrementWrongAnswer() {}
+/**
+ * Gets the current tally of incorrect answers from the DOM and increments it by 1
+ */
+function incrementWrongAnswer() {
+    let incorrectScore = parseInt(
+        document.getElementById("incorrect").innerText
+    );
+    document.getElementById("incorrect").innerText = ++incorrectScore;
+}
 
 // https://www.youtube.com/watch?v=BVBtbYh3YSU textContent VS innerText
 function displayAdditionQuestion(operand1, operand2) {

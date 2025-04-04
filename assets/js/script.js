@@ -46,9 +46,9 @@ function runGame(gameType) {
         case "multiply":
             displayMultiplyQuestion(op1, op2);
             break;
-        // case "division":
-        //     displayDivisionQuestion(op1, op2);
-        //     break;
+        case "division":
+            displayDivisionQuestion(op1, op2);
+            break;
         default:
             alert(`Invalid game type: ${gameType}`);
             throw `Invalid game type: ${gameType}. Aborting!`;
@@ -92,11 +92,9 @@ function calculateCorrectAnswer() {
         return [operand1 - operand2, "subtract"];
     } else if (operator === "x") {
         return [operand1 * operand2, "multiply"];
-    }
-    // else if (operator === "/") {
-    //     return [operand1 / operand2, "division"];
-    // }
-    else {
+    } else if (operator === "÷") {
+        return [operand1 / operand2, "division"];
+    } else {
         alert(`Unimplemented operator: ${operator}`);
         throw `Unimplemented operator: ${operator}. Aborting!`;
     }
@@ -139,4 +137,11 @@ function displayMultiplyQuestion(operand1, operand2) {
     document.getElementById("operand1").textContent = operand1;
     document.getElementById("operand2").textContent = operand2;
     document.getElementById("operator").textContent = "x";
+}
+
+function displayDivisionQuestion(operand1, operand2) {
+    // Ensure operand1 is a multiple of operand2 for a clean division
+    document.getElementById("operand1").textContent = operand1 * operand2;
+    document.getElementById("operand2").textContent = operand2;
+    document.getElementById("operator").textContent = "÷";
 }
